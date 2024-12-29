@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="./static/images/icon.png">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="HaWoR: World-Space Hand Motion Reconstruction from Egocentric Videos">
+  <meta name="keywords" content="Hand, 3D, Reconstruction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HaWoR: World-Space Hand Motion Reconstruction from Egocentric Videos</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      .video-container {
+          display: flex;  /* Use flexbox to align videos side by side */
+          justify-content: center;
+          gap: 20px;  /* Space between the videos */
+      }
+
+      
+
+      /* Make sure the videos are responsive on smaller screens */
+      @media (max-width: 900px) {
+          .video-container {
+              flex-direction: column;  /* Stack videos vertically on smaller screens */
+              align-items: center;
+          }
+
+          video {
+              width: 100%;  /* Make the videos take full width on smaller screens */
+              max-width: 500px;  /* Limit the width on smaller screens */
+          }
+      }
+  </style>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">HaWoR: World-Space Hand Motion Reconstruction from Egocentric Videos</h1>          
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <a href="">Jinglei Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jiankangdeng.github.io/">Jiankang Deng</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=syoPhv8AAAAJ&hl=en">Chao Ma</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://rolpotamias.github.io/">Rolandos Alexandros Potamias</a><sup>2</sup>,</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University, China</span>
+            <span class="author-block"><sup>2</sup>Imperial College London, United Kingdom</span>
+          </div>
+          <br>
+          <span class="author-block">
+            <h1 class="title is-size-4  publication-venue"></h1>
+          </span>
+          <br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/ThunderVVV/HaWoR"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/images/page_video.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">HaWoR</span> recovers 3D hands in world coordinates from egocentric videos.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="teaser" class="center">
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite the advent in 3D hand pose estimation, current methods predominantly focus on single-image 3D hand reconstruction in the camera frame, overlooking the world-space motion of the hands. Such limitation prohibits their direct use in egocentric video settings, where hands and camera are continuously in motion. In this work, we propose HaWoR, a high-fidelity method for hand motion reconstruction in world coordinates from egocentric videos. We propose to decouple the task by reconstructing the hand motion in the camera space and estimating the camera trajectory in the world coordinate system. To achieve precise camera trajectory estimation, we propose an adaptive egocentric SLAM framework that addresses the shortcomings of traditional SLAM methods, providing robust performance under challenging camera dynamics. To ensure robust hand motion trajectories, even when the hands move out of view frustum, we devise a novel motion infiller network that effectively completes the missing frames of the sequence. Through extensive quantitative and qualitative evaluations, we demonstrate that HaWoR achieves state-of-the-art performance on both hand motion reconstruction and world-frame camera trajectory estimation under different egocentric benchmark datasets.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+    <!-- Method overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+        <p>
+            HaWoR is a high-fidelity reconstruction framework for hand motion reconstruction in world coordinates from egocentric videos. We propose to decouple the task by reconstructing the hand motion in the camera space and estimating the camera trajectory in the world coordinate system.  
+        </p>
+        <div>
+            <img src="./static/images/Reconstruction_method.png" alt="method" class="center">
+        </div>
+        <p>
+          Given an egocentric video \( \mathbf{V} \) with a set of detected hands from an off-the-shelf detector, we utilize a large-scale transformer-based module with two levels of data-driven motion priors to reconstruct the 3D hand motions in the camera frame. To reconstruct hand movements beyond the view frustum, we introduce a novel hand motion infiller network designed to complete the missing frames in the hand motion sequence. We estimate world-space camera trajectories using an adaptive egocentric SLAM module that is accompanied by a foundation metric model to accurately align the SLAM reconstructions to the world-coordinates.  
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+  <!-- Method overview. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Reconstruction Performance</h2>
+      <div class="content has-text-justified">
+      <p>
+          HaWoR significantly advances state-of-the-art 3D reconstruction in the world-coordinates, outperforming previous methods on HOT3D datasets.
+      </p>
+      <div>
+          <img src="./static/images/Comparison.png" alt="method" class="center">
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>  
+  
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{
+  }
+</code></pre>
+  </div>
+</section>
+<!-- 
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    S. Zafeiriou was supported by EPSRC Project DEFORM (EP/S010203/1) and GNOMON (EP/X011364). R.A. Potamias was supported
+by EPSRC Project GNOMON (EP/X011364).
+  </div>
+</section> -->
+
+<footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              The source code of this website is borrowed from <a
+                href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
